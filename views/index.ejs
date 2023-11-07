@@ -1,0 +1,22 @@
+<%- include("header.ejs") %>
+
+    <div class="todo-list">
+
+        <h1>Today</h1>
+        <ul>
+            <% tasks.forEach((task)=> { %>
+                <li>
+                    <input type="checkbox" class="checkbox" data-task="<%= task.text %>" onchange="toggleTask(this)" <%
+                        if (task.completed) { %>checked<% } %> />
+                        <%= task.text %>
+                </li>
+                <% }) %>
+        </ul>
+        <form action="/addtask" method="POST">
+            <input type="text" id="todaytask" name="todaytask" placeholder="Enter your Task" />
+            <input type="submit" value="+" class="addtask" />
+        </form>
+
+    </div>
+
+    <%- include("footer.ejs") %>

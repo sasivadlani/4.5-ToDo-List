@@ -1,0 +1,16 @@
+<script>function toggleTask(checkbox) {
+    const taskText = checkbox.getAttribute("data-task");
+    const li = checkbox.parentNode;
+
+    if (checkbox.checked) {
+        li.classList.add("completed");
+        // You can update your tasks array here if needed
+    } else {
+        li.classList.remove("completed");
+        // You can update your tasks array here if needed
+    }
+}</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,55 @@
+h1 {
+  font-size: 2rem;
+}
+body {
+  background-color: rgb(82, 119, 132);
+}
+.todo-list {
+  /* border: 2px solid black; */
+  background-color: rgb(216, 207, 38);
+  border-radius: 10%;
+  padding: 10px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+ul {
+  position: relative;
+  list-style: none;
+  padding-left: 0;
+}
+.checkbox {
+  position: relative;
+  margin-right: 5px;
+}
+#todaytask,
+#worktask {
+  border-radius: 18px;
+}
+.addtask {
+  border-radius: 50%;
+}
+
+input:checked + li {
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.completed{
+    text-decoration: line-through;
+}
+.date{
+    font-size: 3rem;
+    margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: fit-content;
+  background-color: aliceblue;
+  border-radius: 18px;
+
+}
