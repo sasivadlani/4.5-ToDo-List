@@ -41,25 +41,12 @@ app.get("/", (req, res) => {
     });
 });
 
-// app.get("/", (req, res) => {
-//     TodayTask.find({})
-//       .then((documents) => {
-//         // Console log all the documents
-//         documents.forEach((document) => {
-//           console.log(document);
-//         });
-  
-//         // Render the index.ejs template with the tasks
-//         res.render("index.ejs", { tasks: documents });
-//       })
-//       .catch((err) => {
-//         // Handle the error
-//       });
-//   });
-
 app.post("/addtask", (req, res) => {
     const text = req.body.todaytask;
-    todayList.push({ text, isCompleted: false });
+
+    const newTodayTask = new TodayTask({name: text});
+    newTodayTask.save();
+    // todayList.push({ text, isCompleted: false });
     res.redirect("/");
 });
 
