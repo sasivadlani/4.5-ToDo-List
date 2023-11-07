@@ -1,17 +1,61 @@
 import express from "express";
-
+import mongoose from "mongoose";
 const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-let todayList = [];
-let workList = [];
+// let todayList = [];
+// let workList = [];
+
+mongoose.connect("mongodb://localhost:27017/todolistDB");
+
+const itemSchema = {
+    name: String
+};
+
+const TodayTask = mongoose.model("TodayTask", itemSchema);
+
+const task1 = new TodayTask({
+    name: "This Task"
+});
+
+const task2 = new TodayTask({
+    name: "That Task"
+});
+
+const task3 = new TodayTask({
+    name: "Task"
+});
+
+const defaultTodayTasks = [task1, task2, task3];
+
+// TodayTask.insertMany(defaultTodayTasks);
 
 app.get("/", (req, res) => {
-    res.render("index.ejs", { tasks: todayList });
+    TodayTask.find({})
+    .then((documents) => {
+        console.log(documents);
+      res.render("index.ejs", { tasks: documents });
+    });
 });
+
+// app.get("/", (req, res) => {
+//     TodayTask.find({})
+//       .then((documents) => {
+//         // Console log all the documents
+//         documents.forEach((document) => {
+//           console.log(document);
+//         });
+  
+//         // Render the index.ejs template with the tasks
+//         res.render("index.ejs", { tasks: documents });
+//       })
+//       .catch((err) => {
+//         // Handle the error
+//       });
+//   });
 
 app.post("/addtask", (req, res) => {
     const text = req.body.todaytask;
@@ -26,7 +70,7 @@ app.get("/workpage", (req, res) => {
 app.post("/work", (req, res) => {
     const wtext = req.body.worktask;
 
-    workList.push({wtext, isCompleted: false});
+    workList.push({ wtext, isCompleted: false });
     // console.log(workList);
     res.redirect("/workpage");
 })

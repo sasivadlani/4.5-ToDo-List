@@ -7,6 +7,7 @@ body {
 .todo-list {
   /* border: 2px solid black; */
   background-color: rgb(216, 207, 38);
+  color: black;
   border-radius: 10%;
   padding: 10px;
   width: fit-content;
@@ -30,6 +31,7 @@ ul {
 #todaytask,
 #worktask {
   border-radius: 18px;
+  color: black;
 }
 .addtask {
   border-radius: 50%;

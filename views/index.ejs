@@ -4,11 +4,11 @@
 
         <h1>Today</h1>
         <ul>
-            <% tasks.forEach((task)=> { %>
+            <% tasks.forEach((task) => { %>
                 <li>
-                    <input type="checkbox" class="checkbox" data-task="<%= task.text %>" onchange="toggleTask(this)" <%
+                    <input type="checkbox" class="checkbox" data-task="<%= task %>" onchange="toggleTask(this)" <%
                         if (task.completed) { %>checked<% } %> />
-                        <%= task.text %>
+                    <%= task.name %>
                 </li>
                 <% }) %>
         </ul>
