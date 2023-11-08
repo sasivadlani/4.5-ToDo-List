@@ -17,6 +17,8 @@ const itemSchema = {
 
 const TodayTask = mongoose.model("TodayTask", itemSchema);
 
+const CompltedTodayTask = mongoose.model("CompltedTodayTask", itemSchema);
+
 const task1 = new TodayTask({
     name: "This Task"
 });
@@ -36,7 +38,7 @@ const defaultTodayTasks = [task1, task2, task3];
 app.get("/", (req, res) => {
     TodayTask.find({})
     .then((documents) => {
-        console.log(documents);
+        // console.log(documents);
       res.render("index.ejs", { tasks: documents });
     });
 });
@@ -50,6 +52,19 @@ app.post("/addtask", (req, res) => {
     res.redirect("/");
 });
 
+app.post("/deletetask", (req, res) => {
+    console.log(req.body.taskcompletion);
+    const checkedtaskid = req.body.taskcompletion;
+    //const completedtask = new CompltedTodayTask({name: })
+
+    TodayTask.findByIdAndDelete(checkedtaskid).catch((err) =>{
+        console.log(err);
+    });
+    // const newTodayTask = new TodayTask({name: text});
+    // newTodayTask.save();
+    // // todayList.push({ text, isCompleted: false });
+    res.redirect("/");
+});
 app.get("/workpage", (req, res) => {
     res.render("worktasks.ejs", { wtasks: workList });
 });

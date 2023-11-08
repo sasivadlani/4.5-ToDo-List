@@ -3,19 +3,20 @@
     <div class="todo-list">
 
         <h1>Today</h1>
-        <ul>
-            <% tasks.forEach((task)=> { %>
-                <li>
-                    <input type="checkbox" class="checkbox" data-task="<%= task %>" onchange="toggleTask(this)" <% if
-                        (task.completed) { %>checked<% } %> />
+        <% tasks.forEach((task)=> { %>
+            <form action="/deletetask" method="POST">
+                <div class="item">
+                    <input type="checkbox" name="taskcompletion" value="<%= task._id %>"onChange="this.form.submit()">
+                    <span>
                         <%= task.name %>
-                </li>
-                <% }) %>
-        </ul>
-        <form action="/addtask" method="POST">
-            <input type="text" id="todaytask" name="todaytask" placeholder="Enter your Task" />
-            <input type="submit" value="+" class="addtask" />
-        </form>
+                    </span>
+                </div>
+            </form>
+            <% }) %>
+                <form action="/addtask" method="POST">
+                    <input type="text" id="todaytask" name="todaytask" placeholder="Enter your Task" />
+                    <input type="submit" value="+" class="addtask" />
+                </form>
 
     </div>
 
