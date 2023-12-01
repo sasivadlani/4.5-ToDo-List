@@ -53,29 +53,28 @@ app.post("/addtask", (req, res) => {
 });
 
 app.post("/deletetask", (req, res) => {
-    console.log(req.body.taskcompletion);
+    // console.log(req.body.taskcompletion);
     const checkedtaskid = req.body.taskcompletion;
-    //const completedtask = new CompltedTodayTask({name: })
+    // const completedtask = new CompltedTodayTask({name: })
 
+    const task = TodayTask.findById(checkedtaskid);
+    
+    const completedtask = new CompltedTodayTask({name: task.name});
+    
+    completedtask.save();
     TodayTask.findByIdAndDelete(checkedtaskid).catch((err) =>{
         console.log(err);
     });
+
+
+    // TodayTask.findByIdAndDelete(checkedtaskid).catch((err) =>{
+    //     console.log(err);
+    // });
     // const newTodayTask = new TodayTask({name: text});
     // newTodayTask.save();
     // // todayList.push({ text, isCompleted: false });
     res.redirect("/");
 });
-app.get("/workpage", (req, res) => {
-    res.render("worktasks.ejs", { wtasks: workList });
-});
-
-app.post("/work", (req, res) => {
-    const wtext = req.body.worktask;
-
-    workList.push({ wtext, isCompleted: false });
-    // console.log(workList);
-    res.redirect("/workpage");
-})
 
 app.listen(port, (req, res) => {
     console.log(`Listening in port ${port}`);
